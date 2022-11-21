@@ -3,7 +3,6 @@ import deleteIcon from "./deleteBtn.js";
 import { displayTask } from "./readTaks.js";
 
 export const addTask = (evento) => {
-  //funcion que llamada addTask, que lo va a recibir es evento, el evento genera el fomrulario
   evento.preventDefault(); //  formulario
 
   const list = document.querySelector("[data-list]"); //  trae la lista, donde se genera las tareas
@@ -26,20 +25,18 @@ export const addTask = (evento) => {
   const taskObj = {
     value,
     dateFormat,
-    complete, // se agrego la llave complete, y siempre esat en false ya que la tarea no esta completada
-    id: uuid.v4(), // se agrego a cada uno de los elementos un id
-  }; // Constante crea un objeto donde se almacena la tarea y la fecha
+    complete, 
+    id: uuid.v4(), 
+  }; 
 
   list.innerHTML = ""; // ´por cada una de las tareas que se estan agregando, va adecir que su estructura es 0, es un string vacio, despues readTask se encarga de agregar cada una de las tareas
 
-  const taskList = JSON.parse(localStorage.getItem("tasks")) || []; // que es igual a todo lo que este en localStorage con la llave tasks, lee la info y lo devuelve en formato JSON y en caso que devuelve null regrea un arreglo vacio
-  taskList.push(taskObj); //Metodo PUSH, ir agregando a nuestro arreglo infomacion que vayamos agregando | segundo
-  localStorage.setItem("tasks", JSON.stringify(taskList)); // volver almcenar nuestro arreglo de tareas actualizado, convirtiendolo en fomrato JSON
+  const taskList = JSON.parse(localStorage.getItem("tasks")) || []; 
+  taskList.push(taskObj); 
+  localStorage.setItem("tasks", JSON.stringify(taskList)); 
 
-  displayTask(); //ordena o actualiza por fechas
-  // const task = createTask(taskObj); // crea una tarea
-  // list.appendChild(task); // En la lista agregame el elemento task
-}; // Agregar tarea
+  displayTask(); 
+};
 
 export const createTask = ({ value, dateFormat, complete, id }) => {
   //se destrutura el obj de createTasks
